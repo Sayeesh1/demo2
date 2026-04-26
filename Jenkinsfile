@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Sayeesh1/https://github.com/Sayeesh1/demo2.git'
+                git 'https://github.com/Sayeesh1/demo2.git'
             }
         }
 
