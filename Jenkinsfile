@@ -15,9 +15,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${DOCKER_IMAGE}:latest")
-                }
+                sh "docker build -t ${DOCKER_IMAGE}:latest ."
             }
         }
 
@@ -35,11 +33,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                script {
-                    docker.withRegistry('', 'dockerhub-creds') {
-                        docker.image("${DOCKER_IMAGE}:latest").push()
-                    }
-                }
+                sh "docker push ${DOCKER_IMAGE}:latest"
             }
         }
     }
@@ -52,4 +46,5 @@ pipeline {
             echo 'Pipeline failed'
         }
     }
+}
 }
