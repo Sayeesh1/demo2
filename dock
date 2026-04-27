@@ -1,0 +1,25 @@
+FROM openjdk:17
+WORKDIR /app
+COPY . .
+RUN javac App.java
+CMD ["java", "App"]
+
+
+FROM gcc:latest
+WORKDIR /app
+COPY . .
+RUN gcc main.c -o app
+CMD ["./app"]
+
+FROM gcc:latest
+WORKDIR /app
+COPY . .
+RUN g++ main.cpp -o app
+CMD ["./app"]
+
+
+FROM nginx:latest
+COPY . /usr/share/nginx/html
+
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
